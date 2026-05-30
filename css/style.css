@@ -773,6 +773,8 @@ img {
 
   .hero-bg img {
     object-position: 65% top;
+    transform: scale(0.85);
+    transform-origin: top center;
   }
 
   .hero-inner {
