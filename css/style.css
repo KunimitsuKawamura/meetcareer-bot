@@ -772,14 +772,12 @@ img {
   }
 
   .hero-bg img {
-    object-position: 60% top;
-    object-fit: contain;
-    background-color: #fdf9f3;
+    object-position: 65% top;
   }
 
   .hero-inner {
     min-height: auto;
-    padding-top: 62vh;
+    padding-top: 56vh;
     align-items: stretch;
   }
 
