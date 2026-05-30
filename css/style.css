@@ -769,7 +769,6 @@ img {
 @media (max-width: 960px) {
   .hero {
     min-height: auto;
-    max-height: 80vh;
   }
 
   .hero-bg img {
