@@ -771,6 +771,10 @@ img {
     min-height: auto;
   }
 
+  .hero-bg {
+    height: 75vh;
+  }
+
   .hero-bg img {
     object-position: 70% top;
   }
