@@ -771,13 +771,18 @@ img {
     min-height: auto;
   }
 
+  .hero-bg {
+    width: 130%;
+    left: -15%;
+  }
+
   .hero-bg img {
-    object-position: 65% top;
+    object-position: 55% top;
   }
 
   .hero-inner {
     min-height: auto;
-    padding-top: 45vh;
+    padding-top: 62vh;
     align-items: stretch;
   }
 
