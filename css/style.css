@@ -773,13 +773,11 @@ img {
 
   .hero-bg img {
     object-position: 65% top;
-    transform: scale(0.85);
-    transform-origin: top center;
   }
 
   .hero-inner {
     min-height: auto;
-    padding-top: 50vh;
+    padding-top: 45vh;
     align-items: stretch;
   }
 
