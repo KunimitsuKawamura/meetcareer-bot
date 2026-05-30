@@ -342,9 +342,12 @@ img {
     #FDF9F3 100%);
 }
 .hero-stats {
+  position: absolute;
+  top: 120px;
+  left: 40px;
   display: flex;
   gap: 24px;
-  margin-bottom: 28px;
+  z-index: 3;
   opacity: 0;
   animation: fadeInUp 0.8s ease 0.3s forwards;
 }
