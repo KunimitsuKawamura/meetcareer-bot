@@ -772,7 +772,9 @@ img {
   }
 
   .hero-bg img {
-    object-position: 70% top;
+    object-position: 60% top;
+    object-fit: contain;
+    background-color: #fdf9f3;
   }
 
   .hero-inner {
