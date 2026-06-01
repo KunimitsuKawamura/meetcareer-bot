@@ -14,9 +14,9 @@
   <meta property="og:title" content="モヤモヤ壁打ちAI | ミートキャリア">
   <meta property="og:description" content="キャリアのモヤモヤ、AIと壁打ちしてみませんか？ミートキャリアが提供する無料のAI壁打ちツール。">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://kunimitsukawamura.github.io/meetcareer-bot/">
+  <meta property="og:url" content="https://bot.meetcareer.net/">
   <meta property="og:site_name" content="ミートキャリア">
-  <meta property="og:image" content="https://kunimitsukawamura.github.io/meetcareer-bot/assets/ogp_hq.png">
+  <meta property="og:image" content="https://bot.meetcareer.net/assets/ogp_hq.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
 
@@ -24,7 +24,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="モヤモヤ壁打ちAI | ミートキャリア">
   <meta name="twitter:description" content="キャリアのモヤモヤ、AIと壁打ちしてみませんか？">
-  <meta name="twitter:image" content="https://kunimitsukawamura.github.io/meetcareer-bot/assets/ogp_hq.png">
+  <meta name="twitter:image" content="https://bot.meetcareer.net/assets/ogp_hq.png">
 
   <!-- JSON-LD -->
   <script type="application/ld+json">
@@ -68,6 +68,15 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap"
     rel="stylesheet">
+
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ENX3EBCYTJ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-ENX3EBCYTJ');
+  </script>
 
   <!-- Styles -->
   <link rel="stylesheet" href="css/style.css?t=1748603000">
@@ -298,6 +307,54 @@
       }, { threshold: 0 });
 
       stickyObserver.observe(heroCta);
+    }
+    // --- GA4 Custom Events: CTA clicks ---
+    document.querySelectorAll('[id^="cta-"]').forEach(el => {
+      el.addEventListener('click', () => {
+        const id = el.id; // e.g. cta-chatgpt-hero, cta-gemini-sticky
+        const parts = id.replace('cta-', '').split('-');
+        const platform = parts[0]; // chatgpt or gemini
+        const position = parts[1]; // hero or sticky
+        gtag('event', 'bot_cta_click', {
+          platform: platform,
+          position: position,
+          link_url: el.href
+        });
+      });
+    });
+
+    // --- GA4 Custom Events: Video engagement ---
+    const video = document.querySelector('.video-wrapper video');
+    if (video) {
+      let videoMilestones = { play: false, 25: false, 50: false, 75: false, complete: false };
+
+      video.addEventListener('play', () => {
+        if (!videoMilestones.play) {
+          gtag('event', 'bot_video_play', { video_title: 'moyamoya_ai_intro' });
+          videoMilestones.play = true;
+        }
+      });
+
+      video.addEventListener('timeupdate', () => {
+        if (!video.duration) return;
+        const pct = (video.currentTime / video.duration) * 100;
+        [25, 50, 75].forEach(milestone => {
+          if (pct >= milestone && !videoMilestones[milestone]) {
+            gtag('event', 'bot_video_progress', {
+              video_title: 'moyamoya_ai_intro',
+              video_percent: milestone
+            });
+            videoMilestones[milestone] = true;
+          }
+        });
+      });
+
+      video.addEventListener('ended', () => {
+        if (!videoMilestones.complete) {
+          gtag('event', 'bot_video_complete', { video_title: 'moyamoya_ai_intro' });
+          videoMilestones.complete = true;
+        }
+      });
     }
   </script>
 
