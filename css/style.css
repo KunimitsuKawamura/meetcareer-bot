@@ -343,7 +343,7 @@ img {
 }
 .hero-stats {
   position: absolute;
-  top: 120px;
+  top: 90px;
   left: 40px;
   display: flex;
   gap: 24px;
